@@ -1,6 +1,7 @@
 <script>
 
 import axios from 'axios';
+import ProjectCard from './components/ProjectCard.vue';;
 
 export default {
   name: 'App',
@@ -12,16 +13,11 @@ export default {
     }
   },
   mounted() {
-    axios
-      .get(this.base_url + this.portfolio_api)
-      .then(response => {
-        console.log(response);
-        this.projects = response.data.result
-      })
-      .catch(err => {
-        console.error(err);
-      })
-  }
+
+  },
+  components: {
+    ProjectCard
+  },
 }
 </script>
 
@@ -65,29 +61,8 @@ export default {
   </header>
 
   <main>
-    <div class="container pt-4">
-      <h1>Progetti</h1>
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
-        <div class="col" v-for="project in projects.data">
-          <div class="card">
-            <img :src="base_url + '/storage/' + project.cover_image" alt="">
-            <h4>{{ project.title }}</h4>
-            <div class="card-body">
-              <p>{{ project.description }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <ProjectCard></ProjectCard>
   </main>
 </template>
 
-<style scoped>
-.admin a:hover {
-  color: white;
-}
-
-.admin-icon {
-  fill: white;
-}
-</style>
+<style scoped></style>
