@@ -1,30 +1,42 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
+<script>
+
+import axios from 'axios';
+
+export default {
+  name: 'App',
+  data() {
+    return {
+      projects: [],
+      portfolio_api: 'http://127.0.0.1:8000/api/projects',
+    }
+  },
+  mounted() {
+    axios
+      .get(this.portfolio_api)
+      .then(response => {
+        console.log(response);
+        this.projects = response.data.result
+      })
+      .catch(err => {
+        console.error(err);
+      })
+  }
+}
 </script>
 
 <template>
   <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+    <h1>Progetti</h1>
+    <div class="container">
+      <div class="row">
+        <div class="col" v-for="project in projects.data">
+          <div class="card">
+            <h4>{{ project.title }}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
+<style scoped></style>
