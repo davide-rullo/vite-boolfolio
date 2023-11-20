@@ -1,7 +1,7 @@
 <script>
 import axios from 'axios';
 export default {
-    name: 'App',
+    name: 'ProjectCard',
     data() {
         return {
             projects: [],

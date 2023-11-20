@@ -1,7 +1,8 @@
 <script>
 
 import axios from 'axios';
-import ProjectCard from './components/ProjectCard.vue';;
+import ProjectCard from './components/ProjectCard.vue'; import { RouterView } from 'vue-router';
+;
 
 export default {
   name: 'App',
@@ -16,7 +17,8 @@ export default {
 
   },
   components: {
-    ProjectCard
+    ProjectCard,
+    RouterView
   },
 }
 </script>
@@ -34,14 +36,18 @@ export default {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <router-link class="nav-link active" aria-current="page" to="/">Home</router-link>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+              <router-link class="nav-link" to="/about">About</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/projects">Projects</router-link>
             </li>
 
+
             <li class="nav-item">
-              <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+              <router-link class="nav-link" to="/contacts">Contacts</router-link>
             </li>
           </ul>
           <div class="admin">
@@ -61,7 +67,7 @@ export default {
   </header>
 
   <main>
-    <ProjectCard></ProjectCard>
+    <router-view></router-view>
   </main>
 </template>
 
