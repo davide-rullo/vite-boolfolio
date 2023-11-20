@@ -4,7 +4,7 @@ export default {
     name: 'ProjectCard',
     data() {
         return {
-            projects: [],
+            projects: null,
             base_url: 'http://127.0.0.1:8000',
             portfolio_api: '/api/projects',
         }
@@ -25,39 +25,45 @@ export default {
 </script>
 
 <template>
-    <div class="container pt-4">
-        <h1>Progetti</h1>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
-            <div class="col" v-for="project in projects.data">
-                <div class="card">
-                    <img :src="base_url + '/storage/' + project.cover_image" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">{{ project.title }}</h4>
-                        <p class="card-text">{{ project.description }}</p>
+    <section class="projects" v-if="projects">
+        <div class="container pt-4">
+            <h1>Progetti</h1>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+                <div class="col" v-for="project in projects.data">
+                    <div class="card">
+                        <img :src="base_url + '/storage/' + project.cover_image" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ project.title }}</h4>
+                            <p class="card-text">{{ project.description }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="container pt-3">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+        <div class="container pt-3">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+    </section>
+    <div class="container text-center pt-5" v-else>
+        <span class="loader"></span>
     </div>
 </template>
 
@@ -68,5 +74,26 @@ export default {
 
 .admin-icon {
     fill: white;
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid black;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 </style>
