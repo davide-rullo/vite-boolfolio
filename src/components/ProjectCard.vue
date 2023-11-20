@@ -30,13 +30,16 @@ export default {
             <h1>Progetti</h1>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
                 <div class="col" v-for="project in projects.data">
-                    <div class="card">
-                        <img :src="base_url + '/storage/' + project.cover_image" alt="">
-                        <div class="card-body">
-                            <h4 class="card-title">{{ project.title }}</h4>
-                            <p class="card-text">{{ project.description }}</p>
+
+                    <router-link :to="{ name: 'project', params: { slug: project.slug } }">
+                        <div class="card">
+                            <img :src="base_url + '/storage/' + project.cover_image" alt="">
+                            <div class="card-body">
+                                <h4 class="card-title">{{ project.title }}</h4>
+                                <p class="card-text">{{ project.description }}</p>
+                            </div>
                         </div>
-                    </div>
+                    </router-link>
                 </div>
             </div>
         </div>
@@ -95,5 +98,14 @@ export default {
     100% {
         transform: rotate(360deg);
     }
+}
+
+a {
+    text-decoration: none;
+}
+
+.card:hover {
+    filter: brightness(0.8);
+    transition: all .3s linear;
 }
 </style>
