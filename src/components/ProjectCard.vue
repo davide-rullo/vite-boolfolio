@@ -27,7 +27,7 @@ export default {
 <template>
     <section class="projects" v-if="projects">
         <div class="container pt-4">
-            <h1>Progetti</h1>
+            <h2 class="text-white p-2">Projects</h2>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
                 <div class="col" v-for="project in projects.data">
 
@@ -107,5 +107,10 @@ a {
 .card:hover {
     filter: brightness(0.8);
     transition: all .3s linear;
+}
+
+.pagination {
+    margin: 0;
+    padding: 2rem 0 2rem;
 }
 </style>

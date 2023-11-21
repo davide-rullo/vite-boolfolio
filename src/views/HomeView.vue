@@ -4,7 +4,7 @@
             <div class="wrapper d-flex justify-content-center align-items-center">
                 <div class="container text-center text-white jumbo-cont">
                     <h2 class="pb-3">Hi! I'm Davide Rullo, <br> and this is my Coding Portfolio</h2>
-                    <a href="#" class="btn cta">Go to my projects</a>
+                    <router-link class=" btn cta" to="/projects">Go to my projects</router-link>
                 </div>
             </div>
         </section>
@@ -87,6 +87,7 @@ export default {
 .skills {
     background-color: #F36B8D;
     padding: 2rem 0 6rem;
+    color: black;
 
 }
 
