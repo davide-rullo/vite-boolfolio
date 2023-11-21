@@ -69,6 +69,44 @@ export default {
   <main>
     <router-view></router-view>
   </main>
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col d-flex justify-content-center align-items-center">
+
+          <ul class=" list-unstyled">
+            <li>Projects</li>
+            <li>Link</li>
+            <li>Link</li>
+            <li>Link</li>
+            <li>Link</li>
+
+          </ul>
+        </div>
+        <div class="col d-flex justify-content-center align-items-center">
+          <ul class=" list-unstyled">
+            <li>About</li>
+            <li>Link</li>
+            <li>Link</li>
+            <li>Link</li>
+            <li>Link</li>
+
+          </ul>
+        </div>
+        <div class="col d-flex justify-content-center align-items-center">
+          <ul class=" list-unstyled">
+            <li>Contacts</li>
+            <li>Link</li>
+            <li>Link</li>
+            <li>Link</li>
+            <li>Link</li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
 </template>
 
 <style scoped>
@@ -76,8 +114,14 @@ header {
   background-color: #8142eb;
 }
 
-main {
+main,
+footer {
   background-color: #050633;
-  height: 80vh;
+
+}
+
+footer {
+  color: white;
+  padding-top: 3rem;
 }
 </style>
