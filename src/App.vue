@@ -110,8 +110,7 @@ export default {
 </template>
 
 <style scoped>
-header,
-footer {
+header {
   background-color: #8142eb;
 }
 
@@ -121,7 +120,8 @@ main {
 }
 
 footer {
-  color: black;
+  background-color: black;
+  color: white;
   padding: 3rem 0 3rem;
 }
 
