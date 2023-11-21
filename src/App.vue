@@ -26,7 +26,7 @@ export default {
 <template>
   <header>
 
-    <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Boolfolio</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -71,4 +71,13 @@ export default {
   </main>
 </template>
 
-<style scoped></style>
+<style scoped>
+header {
+  background-color: #8142eb;
+}
+
+main {
+  background-color: #050633;
+  height: 80vh;
+}
+</style>
