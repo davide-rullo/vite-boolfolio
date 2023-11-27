@@ -7,14 +7,33 @@ export default {
             projects: null,
             base_url: 'http://127.0.0.1:8000',
             portfolio_api: '/api/projects',
+            currentPage: 1,
+
         }
     },
+
+    methods: {
+        paginate(page) {
+            axios
+                .get(this.base_url + this.portfolio_api + `?page=${page}`)
+                .then(response => {
+                    console.log(response);
+                    this.projects = response.data.result
+                    this.currentPage = response.data.result.current_page
+                })
+                .catch(err => {
+                    console.error(err);
+                })
+        }
+    },
+
     mounted() {
         axios
             .get(this.base_url + this.portfolio_api)
             .then(response => {
                 console.log(response);
                 this.projects = response.data.result
+
             })
             .catch(err => {
                 console.error(err);
@@ -53,8 +72,8 @@ export default {
                         </a>
                     </li>
                     <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item" @click="paginate(2)"><a class="page-link">2</a></li>
+                    <li class="page-item" @click="paginate(3)"><a class="page-link" href="#">3</a></li>
                     <li class="page-item">
                         <a class="page-link" href="#" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
