@@ -3,14 +3,14 @@
         <section class="jumbo">
             <div class="wrapper d-flex justify-content-center align-items-center">
                 <div class="container text-center text-white jumbo-cont">
-                    <h2 class="pb-3">Hi! I'm Davide Rullo, <br> and this is my Coding Portfolio</h2>
-                    <router-link class=" btn cta" to="/projects">Go to my projects</router-link>
+                    <h1 class="pb-5">Hi! I'm Davide Rullo, <br> and this is my Coding Portfolio</h1>
+                    <router-link class=" cta" to="/projects">Go to my projects</router-link>
                 </div>
             </div>
         </section>
         <section class="skills d-flex justify-content-center align-items-center">
             <div class="container">
-                <h2 class="skill-title pb-5">Skills</h2>
+                <h2 class="skill-title text-center pb-5">Skills</h2>
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-4">
                     <div class="col d-flex justify-content-center">
                         <svg xmlns="http://www.w3.org/2000/svg" height="8em"
@@ -79,10 +79,9 @@ export default {
     padding: 8rem;
 }
 
-.cta {
-    border-radius: 1rem;
-    background-color: #fec021;
-}
+
+
+
 
 .skills {
     background-color: #F36B8D;
@@ -90,6 +89,4 @@ export default {
     color: black;
 
 }
-
-.skill-title {}
 </style>

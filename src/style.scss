@@ -1,5 +1,31 @@
 @use "../node_modules/bootstrap/scss/bootstrap.scss";
 
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
 main {
     color: white;
+}
+
+.cta {
+    border-radius: 1rem;
+    padding: 1rem;
+    background-color: #fec021;
+    text-decoration: none;
+    color: black;
+}
+
+.cta:hover {
+    background-color: rgb(255, 226, 152);
+    transition: all .2s linear;
+}
+
+p {
+    font-size: 1.4rem;
 }
