@@ -103,7 +103,10 @@ export default {
 }
 
 
-
+.card:hover {
+    filter: brightness(0.8);
+    transition: all .3s linear;
+}
 
 
 .skills {
