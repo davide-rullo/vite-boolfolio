@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section class="about">
+        <section class="about p-5">
             <div class="container p-5 d-flex gap-5">
                 <div class="row">
                     <div class="col-12 col-sm-4 d-flex align-items-center justify-content-center">
