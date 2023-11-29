@@ -56,6 +56,11 @@
 
                 </div>
 
+
+
+
+
+
             </div>
         </section>
     </div>
@@ -72,6 +77,7 @@ export default {
             latest: null,
             base_url: 'http://127.0.0.1:8000',
             portfolio_latest: '/api/latest',
+
         }
     },
 
@@ -86,6 +92,9 @@ export default {
             .catch(err => {
                 console.error(err);
             })
+
+
+
     }
 }
 
