@@ -8,6 +8,10 @@ import SingleProjectView from "./views/SingleProjectView.vue";
 import ContactsView from "./views/ContactsView.vue";
 import NotFoundView from "./views/NotFoundView.vue";
 
+import SingleTechnologyView from "./views/SingleTechnologyView.vue";
+import SingleTypeView from "./views/SingleTypeView.vue";
+
+
 
 
 
@@ -33,6 +37,19 @@ const routes = [
         name: 'project',
         component: SingleProjectView
     },
+
+    {
+        path: '/technology/:slug',
+        name: 'technology',
+        component: SingleTechnologyView
+    },
+
+    {
+        path: '/type/:slug',
+        name: 'type',
+        component: SingleTypeView
+    },
+
 
     {
         path: '/contacts',
