@@ -5,7 +5,7 @@ import AboutView from "./views/AboutView.vue";
 import ProjectsView from "./views/ProjectsView.vue";
 import SingleProjectView from "./views/SingleProjectView.vue";
 
-import ContactsView from "./views/ContactsView.vue";
+
 import NotFoundView from "./views/NotFoundView.vue";
 
 import SingleTechnologyView from "./views/SingleTechnologyView.vue";
@@ -52,12 +52,6 @@ const routes = [
 
 
     {
-        path: '/contacts',
-        name: 'contacts',
-        component: ContactsView
-    },
-
-    {
         path: '/:pathMatch(.*)*',
         name: 'NotFound',
         component: NotFoundView
@@ -69,7 +63,20 @@ const routes = [
 
 const router = createRouter({
     history: createWebHashHistory(),
-    routes
+    routes,
+    scrollBehavior(to, from, savedPosition) {
+        // If the route has a hash (anchor), scroll to that hash position
+        if (to.hash) {
+            const offset = 56; // Adjust this value based on your fixed header height
+            return {
+                el: to.hash,
+                top: document.querySelector(to.hash).offsetTop - offset,
+                behavior: 'smooth'
+            };
+        }
+        // If there's no hash, scroll to the top of the page
+        return { top: 0, behavior: 'smooth' };
+    },
 })
 
 export { router }

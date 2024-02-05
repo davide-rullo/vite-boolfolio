@@ -1,7 +1,10 @@
 <template>
     <div>
+        <section>
 
-        <ProjectCard></ProjectCard>
+
+            <ProjectCard></ProjectCard>
+        </section>
     </div>
 </template>
 
