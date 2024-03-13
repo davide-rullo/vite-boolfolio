@@ -1,21 +1,21 @@
 <script>
 import axios from 'axios';
+import { state } from "../state.js"
+import CursorEffect from './CursorEffect.vue';
+
 export default {
+    mixins: [CursorEffect],
     name: 'ProjectCard',
+    components:{
+        CursorEffect
+    },
     data() {
         return {
             projects: null,
-            base_url: 'http://127.0.0.1:8000',
-            portfolio_api: '/api/projects',
-
-
-            portfolio_technologies: '/api/technologies',
             technologies: null,
-
             portfolio_types: '/api/types',
             types: null,
-
-
+            state,
         }
     },
 
@@ -24,47 +24,17 @@ export default {
     },
 
     mounted() {
-        axios
-            .get(this.base_url + this.portfolio_api)
-            .then(response => {
-                console.log(response);
-                this.projects = response.data.result
-
-            })
-            .catch(err => {
-                console.error(err);
-            }),
-
-            axios
-                .get(this.base_url + this.portfolio_technologies)
-                .then(response => {
-                    console.log(response);
-                    this.technologies = response.data.result
-
-                })
-                .catch(err => {
-                    console.error(err);
-                }),
-
-            axios
-                .get(this.base_url + this.portfolio_types)
-                .then(response => {
-                    console.log(response);
-                    this.types = response.data.result
-
-                })
-                .catch(err => {
-                    console.error(err);
-                })
+        
     }
 }
 
 </script>
 
 <template>
-    <section class="projects pt-3 pb-5" v-if="projects">
+    <section class="projects pt-3 pb-5">
+        <div v-if="!isMobile" class="light-effect" :style="{ top: mouseY + 'px', left: mouseX + 'px', width: lightSize + 'px', height: lightSize + 'px' }"></div>
         <div class="container pt-4">
-            <div class="intro p-4">
+            <div class="intro p-4" @mouseover="expandLight" @mouseout="shrinkLight">
                 <h2 class="text-white ">Progetti</h2>
                 <p class="intro-p">Ecco alcuni progetti che ho svolto durante il corso intensivo di Full-Stack Web
                     Development. All'interno
@@ -73,21 +43,21 @@ export default {
             </div>
 
             <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4 justify-content-center p-4">
-                <div class="col" v-for="project in projects.data">
+                <div class="col" v-for="project in state.projects">
 
-                    <router-link :to="{ name: 'project', params: { slug: project.slug } }">
-                        <div class="card ">
-                            <img height="" :src="base_url + '/storage/' + project.cover_image" alt="">
-                            <div class="card-body">
-                                <h4 class="card-title">{{ project.title }}</h4>
-                                <p class="card-text">{{ project.description }}</p>
-                            </div>
+                     <router-link :to="{ name: 'project', params: { slug: project.slug } }" @mouseover="disappearLight" @mouseout="shrinkLight"> 
+                    <div class="card ">
+                        <img height="" :src="'./src/assets/thumbs/' + project.thumb" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ project.name }}</h4>
+                            <p class="card-text">{{ project.description }}</p>
                         </div>
-                    </router-link>
+                    </div>
+                   </router-link> 
                 </div>
             </div>
 
-            <a class="link-git" href="https://github.com/davide-rullo" target="_blank">
+            <a class="link-git" href="https://github.com/davide-rullo" target="_blank" @mouseover="disappearLight" @mouseout="shrinkLight">
                 <div class="d-flex justify-content-center gap-3 p-5">
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
@@ -103,25 +73,10 @@ export default {
             </a>
 
 
-
-
-
-
-
-
-
-
-
-
-
         </div>
 
 
-
     </section>
-    <div class="container text-center pt-5" v-else>
-        <span class="loader"></span>
-    </div>
 </template>
 
 <style scoped>
@@ -176,11 +131,5 @@ p {
     font-size: 1.3rem;
 }
 
-.link-git {
-    transition: all .3s;
-}
 
-.link-git:hover {
-    color: #f2216c;
-}
 </style>

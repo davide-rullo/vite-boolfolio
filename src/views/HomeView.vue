@@ -1,13 +1,17 @@
 <template>
     <div>
+       
         <section class="jumbo">
+            <div v-if="!isMobile" class="light-effect" :style="{ top: mouseY + 'px', left: mouseX + 'px', width: lightSize + 'px', height: lightSize + 'px' }">
+               
+            </div>
             <div class="wrapper d-flex justify-content-center align-items-center">
                 <div class="container text-center text-white jumbo-cont">
                     <div class="row row-cols-1 row-cols-md-2 g-4">
-                        <div class="col d-flex align-items-center flex-column justify-content-center">
-                            <h1 class="typing-demo">Hello World!</h1>
-                            <h1 class=" " v-motion-fade> Mi chiamo Davide, <br> e questo è il mio Portfolio</h1>
-                            <router-link class="pt-5 " to="/projects"><button v-motion-fade class="learn-more">
+                        <div class="col d-flex align-items-center flex-column justify-content-center"  >
+                            <h1 @mouseover="expandLight" @mouseout="shrinkLight" class="typing-demo" >Hello World!</h1>
+                            <h1 @mouseover="expandLight" @mouseout="shrinkLight" class=" " v-motion-fade> Mi chiamo Davide, <br> e questo è il mio Portfolio</h1>
+                            <router-link class="pt-5 " to="/projects"><button v-motion-fade class="learn-more" @mouseover="disappearLight" @mouseout="shrinkLight">
                                     <span class="circle pt-5" aria-hidden="true">
                                         <span class="icon arrow"></span>
                                     </span>
@@ -28,11 +32,11 @@
 
                     <div class="container">
                         <div class="row justify-content-center">
-                            <div class="col-12 col-sm-8">
+                            <div class="col-12 col-sm-8" @mouseover="expandLight" @mouseout="shrinkLight">
 
-                                <h3>About me</h3>
+                                <h3 >About me</h3>
                                 <hr>
-                                <p class="mb-5">Mi chiamo Davide Rullo e sono un Junior Full-Stack Web Developer. Ho una
+                                <p class="mb-5"  >Mi chiamo Davide Rullo e sono un Junior Full-Stack Web Developer. Ho una
                                     grande passione
                                     per la tecnologia e amo sperimentare e imparare nel mondo dello sviluppo Web.
                                     <br><br>
@@ -54,7 +58,7 @@
                 <div class="container" v-motion-fade-visible>
                     <div class="row pb-5">
                         <div class="col d-flex flex-column flex-wrap align-items-end">
-                            <h2 class="skill-title">Skills</h2>
+                            <h2 class="skill-title" @mouseover="expandLight" @mouseout="shrinkLight">Skills</h2>
                             <hr>
                             <!-- <div class="line"></div> -->
                             <div class="text-center">
@@ -106,16 +110,15 @@
 
 
                 <div class="container" v-motion-fade-visible>
-                    <h2 class="p-4 text-center text-black">I progetti più recenti</h2>
+                    <h2 class="p-4 text-center text-black" @mouseover="expandLight" @mouseout="shrinkLight">I progetti più recenti</h2>
                     <div class="row row-cols-1 row-cols-lg-3 g-4 p-4">
                         <div class="col d-flex justify-content-center align-items-center" v-for="project in latest">
 
                             <router-link :to="{ name: 'project', params: { slug: project.slug } }">
                                 <div class="card ">
-                                    <img class="card-img-top img-fluid" :src="base_url + '/storage/' + project.cover_image"
-                                        alt="">
+                                    <img class="img-fluid" :src="'./src/assets/thumbs/' + project.thumb" alt="">
                                     <div class="card-body">
-                                        <h4 class="card-title">{{ project.title }}</h4>
+                                        <h4 class="card-title">{{ project.name }}</h4>
                                         <p class="card-text">{{ project.description }}</p>
                                     </div>
                                 </div>
@@ -125,7 +128,7 @@
 
                     </div>
                     <div class="d-flex justify-content-center">
-                        <router-link class="pt-5 " to="/projects"><button class="learn-more sm-bt">
+                        <router-link class="pt-5 " to="/projects"><button class="learn-more sm-bt" @mouseover="disappearLight" @mouseout="shrinkLight">
                                 <span class="circle pt-5" aria-hidden="true">
                                     <span class="icon arrow"></span>
                                 </span>
@@ -146,38 +149,28 @@
 <script>
 
 import axios from 'axios';
+import { state } from "../state.js"
 import WordRotation from '../components/WordRotation.vue';
+import CursorEffect from '../components/CursorEffect.vue';
 
 export default {
-
+    mixins: [CursorEffect],
     name: 'HomeView',
     components: {
         WordRotation,
+        CursorEffect
     },
     data() {
         return {
-            latest: null,
-            base_url: 'http://127.0.0.1:8000',
-            portfolio_latest: '/api/latest',
-
+            state,
+           
+            latest: state.projects.slice(0, 3),
+            
         }
     },
 
-    mounted() {
-        axios
-            .get(this.base_url + this.portfolio_latest)
-            .then(response => {
-                console.log(response);
-                this.latest = response.data.result
+   
 
-            })
-            .catch(err => {
-                console.error(err);
-            })
-
-
-
-    }
 }
 
 

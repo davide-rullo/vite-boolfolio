@@ -10,6 +10,10 @@ html {
 
 }
 
+body {
+    cursor: none;
+}
+
 
 section {
     scroll-snap-align: start;
@@ -94,4 +98,40 @@ p {
 
 .card-text {
     font-size: 1rem;
+}
+
+.link-git {
+    transition: all .3s;
+}
+
+.link-git:hover {
+    color: #f2216c;
+}
+
+.light-effect {
+    position: fixed;
+    background-color: #f2216c;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: screen;
+    z-index: 9999;
+    transition: width 0.3s, height 0.3s;
+    /* Aggiungi una transizione per un effetto di espansione fluido */
+    // soft light screen o lighten
+}
+
+.blur-circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    /* Colore bianco con trasparenza */
+    backdrop-filter: blur(20px);
+    /* Applica lo sfocatura */
+    z-index: -1;
+    /* Posiziona dietro il cerchio principale */
 }

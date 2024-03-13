@@ -3,15 +3,96 @@
 import axios from 'axios';
 import ProjectCard from './components/ProjectCard.vue';
 import { RouterView } from 'vue-router';
-;
+import CursorEffect from './components/CursorEffect.vue';
+
 
 export default {
   name: 'App',
+  mixins: [CursorEffect],
   data() {
     return {
       projects: [],
-      base_url: 'http://127.0.0.1:8000',
-      portfolio_api: '/api/projects',
+      proj: [
+        {
+          name: "Dropbox replica",
+          description: "Replica di Dropbox, fatta con HTML e CSS",
+          thumb: "/assets/thumbs/dropbox.png",
+        },
+        {
+          name: "Discord replica",
+          description: "Replica del sito di Discord, fatto con HTML e CSS",
+          thumb: "/assets/thumbs/discord.png",
+        },
+        {
+          name: "Boolando",
+          description: "Progetto ispirato a Zalando",
+          thumb: "/assets/thumbs/zalando.png",
+        },
+        {
+          name: "Zoom replica",
+          description: "Replica Web di una call su Zoom",
+          thumb: "/assets/thumbs/zoom.png",
+        },
+        {
+          name: "Web Agency",
+          description: "Sito di prova per una Web Agency",
+          thumb: "/assets/thumbs/webagency.png",
+        },
+        {
+          name: "Spotify Web replica",
+          description: "Replica della versione Web di Spotify",
+          thumb: "/assets/thumbs/spotify.png",
+        },
+        {
+          name: "Our Team",
+          description: "Esercitazione su JS",
+          thumb: "/assets/thumbs/team.png",
+        },
+        {
+          name: "Social Posts",
+          description: "Replica di un Social Network con funzionalità JS",
+          thumb: "/assets/thumbs/social.png",
+        },
+        {
+          name: "Whatsapp Web Replica",
+          description: "Replica della versione Web di Whatsapp",
+          thumb: "/assets/thumbs/whatsapp.png",
+        },
+        {
+          name: "DC Comics Replica",
+          description: "Replica del sito Web di DC Comics",
+          thumb: "/assets/thumbs/dc.png",
+        },
+        {
+          name: "Yu-Gi-Oh API",
+          description: "Sito che utilizza le API di ygoprodeck.com",
+          thumb: "/assets/thumbs/yugioh.png",
+        },
+        {
+          name: "Netflix Replica",
+          description: "Replica di Netflix che utilizza le API di themoviedb.org",
+          thumb: "/assets/thumbs/netflix.png",
+        },
+        {
+          name: "Avada Construction",
+          description: "Simulazione di un sito per un'azienda di costruzioni",
+          thumb: "/assets/thumbs/avada.png",
+        },
+        {
+          name: "Cocktail Bar",
+          description: "Simulazione del sito web di un Cocktail Bar, realizzato con VueJs e Laravel",
+          thumb: "/assets/thumbs/cocktail.png",
+        },
+        {
+          name: "Deliveboo",
+          description: "Piattaforma Web di Food Delivery",
+          thumb: "/assets/thumbs/deliveboo.png",
+        },
+
+
+
+
+      ]
     }
   },
 
@@ -30,15 +111,18 @@ export default {
   },
   components: {
     ProjectCard,
-    RouterView
+    RouterView,
+    CursorEffect
   },
 }
 </script>
 
 <template>
+      
+
   <header>
 
-    <nav class="navbar navbar-expand-lg fixed-top" data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg fixed-top" data-bs-theme="dark" @mouseover="$root.expandLight" @mouseout="$root.shrinkLight">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">DR Dev</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -79,7 +163,7 @@ export default {
               <h3>Contatti</h3>
               <div>
 
-                <a class="link-footer" href="https://www.linkedin.com/in/davide-rullo-2a572a191/" target="_blank">
+                <a class="link-footer" @mouseover="disappearLight" @mouseout="shrinkLight"  href="https://www.linkedin.com/in/davide-rullo-2a572a191/" target="_blank">
                   <div class="d-flex gap-3 pt-4">
                     <div>
                       <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
